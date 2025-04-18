@@ -18,6 +18,7 @@ with open('onehot_encoder_geo.pkl', 'rb') as file:
 with open('scaler.pkl', 'rb') as file:
     scaler = pickle.load(file)
 
+
 ## streamlit app
 st.title('Customer Churn PRediction')
 
@@ -56,10 +57,10 @@ input_data = pd.concat([input_data.reset_index(drop=True), geo_encoded_df], axis
 # Scale the input data
 input_data_scaled = scaler.transform(input_data)
 
-# prodict churn
-prediction=model.predict(input_data_scaled)
-prediction_proba=prediction[0][0]
 
+# Predict churn
+prediction = model.predict(input_data_scaled)
+prediction_proba = prediction[0][0]
 
 st.write(f'Churn Probability: {prediction_proba:.2f}')
 
